@@ -1,78 +1,78 @@
 # Calendar Converter
 
-A simple C and C++ implementation for converting between calendar systems and performing basic date operations.
+> A **Programming Language and Paradigm** course project demonstrating date conversion between Ethiopian and Gregorian calendars using C and C++.
 
-## Features
+## Overview
 
-- Implemented in both C (`mCalendarConverter.c`) and C++ (`mCalendarConverter.cpp`) for flexibility in integration.
-- Core calendar conversion logic placed in standalone source files for easy reuse in other projects.
-- Suitable as a learning resource or as a utility component in larger C/C++ applications.
+This project implements bidirectional conversion between Ethiopian (Coptic) and Gregorian calendar systems. Both implementations use the Julian Day Number (JDN) as an intermediate representation for accurate conversion calculations.
 
-## Project Structure
+## Implementation Details
 
-- `.gitattributes` – Git attributes configuration.
-- `mCalendarConverter.c` – C implementation of the calendar converter.
-- `mCalendarConverter.cpp` – C++ implementation of the calendar converter.
+### C Version (`mCalendarConverter.c`)
+- **139 lines** of procedural code
+- Two standalone functions: `GCtoEC()` and `ECtoGC()`
+- Input validation for month ranges and day limits
+- Leap year handling for both calendar systems
+- Interactive CLI interface using scanf/printf
 
-## Getting Started
+### C++ Version (`mCalendarConverter.cpp`)
+- **224 lines** leveraging object-oriented design
+- Two classes: `EthiopianDate` and `GregorianDate`
+- Encapsulated data (day, month, year) with member functions
+- Constructor overloading and method chaining
+- iostream-based I/O with improved error handling
 
-1. Clone the repository:
+## Key Algorithms
 
-   ```bash
-   git clone https://github.com/goitom50/Calendar-Converter.git
-   cd Calendar-Converter
-   ```
+Both versions use JDN (Julian Day Number) as the conversion intermediary:
 
-2. Compile the C version (example with `gcc`):
+1. **Gregorian → JDN**: Complex formula accounting for calendar offsets and leap years
+2. **JDN → Ethiopian**: Modular arithmetic using offset `1723856`
+3. **Ethiopian → JDN**: Linear calculation with 4-year cycles
+4. **JDN → Gregorian**: Reverse transformation with month/day reconstruction
 
-   ```bash
-   gcc mCalendarConverter.c -o calendar_converter_c
-   ```
+## Quick Start
 
-3. Compile the C++ version (example with `g++`):
+**Compile C version:**
+```bash
+gcc mCalendarConverter.c -o converter_c
+./converter_c
+```
 
-   ```bash
-   g++ mCalendarConverter.cpp -o calendar_converter_cpp
-   ```
+**Compile C++ version:**
+```bash
+g++ mCalendarConverter.cpp -o converter_cpp
+./converter_cpp
+```
 
-4. Run the executable:
+## Usage Example
 
-   ```bash
-   ./calendar_converter_c
-   # or
-   ./calendar_converter_cpp
-   ```
+Both programs prompt for:
+1. Conversion direction (1: EC→GC or 2: GC→EC)
+2. Date input in `dd mm yyyy` format
+3. Output in the target calendar system
 
-Adapt the compilation commands to your environment, build system, or additional source files as needed.
+## Paradigm Comparison
 
-## Usage
+| Aspect | C (Procedural) | C++ (OOP) |
+|--------|---|---|
+| Code Organization | Functions | Classes |
+| Data Encapsulation | None | Private/Public |
+| Validation | Scattered | Methods |
+| Error Handling | printf | cout/exit |
+| Reusability | Function-based | Object-based |
 
-- Include `mCalendarConverter.c` or `mCalendarConverter.cpp` in your project build.
-- Expose and call the conversion functions from your own main program or test harness.
-- Extend the code to support additional calendar systems, validation rules, or input/output formats as required.
+## Limitations & Notes
 
-*(You can update this section with concrete function names, input formats, and example I/O once the API is finalized.)*
+- No range validation for extremely large dates
+- Ethiopian calendar assumes 12 months + 1 (Pagume)
+- Gregorian calendar validation includes leap year rules
+- Basic input/output without file handling
 
-## Requirements
+## Course Context
 
-- C or C++ compiler (for example: `gcc`, `clang`, or `g++`).
-- Standard C/C++ library only (no external dependencies referenced in the repository layout).
-
-## Contributing
-
-Contributions are welcome:
-
-- Improve or refactor the conversion algorithms.
-- Add support for more calendar systems or locales.
-- Provide tests, examples, or documentation updates.
-
-To contribute:
-
-1. Fork the repository.
-2. Create a feature branch.
-3. Commit your changes with clear messages.
-4. Open a pull request describing your modifications.
-
-## License
-
-Add your chosen license here (for example, MIT, Apache 2.0, or GPL). If you do not specify a license, the repository will be treated as "all rights reserved" by default.
+This project was completed for a **Programming Language and Paradigm** course to demonstrate:
+- Procedural vs. Object-oriented approaches
+- Algorithm implementation across language paradigms
+- Date/time calculations and calendar mathematics
+- Code structure and maintainability
